@@ -1,4 +1,4 @@
-var a = moment([2018, 10, 09]);
+var a = moment([2017, 10, 09]);
 var b = moment();
 var m = b.diff(a, 'months');
 var w = b.diff(a, 'weeks');
