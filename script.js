@@ -1,26 +1,68 @@
-var a = moment([2017, 10, 09]);
-var b = moment();
-var m = b.diff(a, 'months');
-var w = b.diff(a, 'weeks');
-var d = b.diff(a, 'days');
-var curr = moment().date();
+const name = 'Jack'
+const a = moment([2017, 10, 9]);
+const now = moment();
+const y = now.diff(a, 'years', true);
+const m = now.diff(a, 'months', true);
+const w = now.diff(a, 'weeks', true);
+const d = now.diff(a, 'days', true);
+const curr = now.date();
+const prevMoBday = now.subtract(1, 'months').startOf('month').add((a.date() - 1), 'days');
 
-if (curr < 16) {
-    var prevMoBday = b.subtract(1, 'months').startOf('month').add(15, 'days').format('YYYY-MM-DD');
-    var dDiff = moment().diff(prevMoBday, 'days');
-    var mDays = " and " + dDiff + " days ";
-} else if (curr > 16) {
-    var dDiff = curr - 16;
-    var mDays = " and " + dDiff + " days ";
-} else if (curr = 16) {
-    var mDays = '';
+let age = '';
+
+age += `${name} is`
+
+// DISPLAY YEARS
+if (y > 2) {
+    age += ' ' + parseInt(y) + ' years'
+} else if (y < 2 && y >= 1) {
+    age += ' ' + parseInt(y) + ' year';
+}
+const m2 = parseInt(m) - (parseInt(y) * 12);  
+
+// TODO: fix months for less than a year
+if (m > ((parseInt(y) * 12) + 1)) {
+    if (y >= 1) {
+        age += ', '
+    } else {
+        age += ' '
+    }
+    if (m2 >= 1 && m2 < 2) {
+        age += m2 + ' month';
+    } else if (m2 >= 2) {
+        age += m2 + ' months';
+    }
 }
 
-var wPlus = Math.round(d - (w * 7));
-var mPlus = m;
+getWeeks = (days) => {
+    var weeks = parseInt(days/7);
+    var dAdj = days - (weeks*7);
+    let wkDy = '';
+    if (m2 >= 1){
+        wkDy += ', '
+    } else {
+        wkDy += ' '
+    }
+    if (days < 7) {
+        wkDy += `and ${days} days`
+    } else if (days >= 7 && days < 14) {
+        wkDy += `${weeks} week, and ${dAdj} days`
+    } else if (days > 14) {
+        wkDy += `${weeks} weeks, and ${dAdj} days`
+    }
+    return wkDy;
+}
 
-document.getElementById("demo").innerHTML =
+if (curr < a.date()){
+    var dDiff = moment().diff(prevMoBday, 'days');
+    var weeks = getWeeks(dDiff);
+    age += weeks;
+} else if (curr > a.date()){
+    var dDiff = curr - a.date();  
+    var weeks = getWeeks(dDiff);
+    age += weeks;
+}
 
-    "Jack is " + m + " months" + mDays + " old today!<br>" +
+age += ' old today!'
 
-    "Jack is " + w + " weeks and " + wPlus + " days old today! <br> Jack is " + "<strong>" + d + "</strong>" + " days old today!";
+document.getElementById("demo").innerHTML = age;
