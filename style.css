@@ -33,3 +33,20 @@ h1 {
   font-family: 'Open Sans', sans-serif; 
   font-size: 2.25rem;
 }
+
+span p {
+  font-family: 'Open Sans', sans-serif; 
+  font-size: 1.25rem;
+  color: grey;
+  display: inline;
+}
+
+.circle {
+  width: 200px;
+  height: 200px;
+  background: url('jack.jpg') center center;
+  background-size: contain;
+  -webkit-clip-path: circle(100px at center);
+  clip-path: circle(100px at center);
+  margin: auto;
+}

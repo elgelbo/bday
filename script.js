@@ -66,3 +66,6 @@ if (curr < a.date()){
 age += ' old today!'
 
 document.getElementById("demo").innerHTML = age;
+document.getElementById("detail-days").innerHTML = `${parseInt(d)} days |`;
+document.getElementById("detail-weeks").innerHTML = `${parseInt(w)} weeks |`;
+document.getElementById("detail-months").innerHTML = `${parseInt(m)} months`;
