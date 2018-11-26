@@ -8,6 +8,8 @@ const d = now.diff(a, 'days', true);
 const curr = now.date();
 const prevMoBday = now.subtract(1, 'months').startOf('month').add((a.date() - 1), 'days');
 
+
+
 let age = '';
 
 age += `${name} is`
@@ -38,18 +40,26 @@ getWeeks = (days) => {
     var weeks = parseInt(days/7);
     var dAdj = days - (weeks*7);
     let wkDy = '';
-    if (m2 >= 1){
-        wkDy += ', '
-    } else {
-        wkDy += ' '
-    }
-    if (days < 7) {
-        wkDy += `and ${days} days`
+    if (days === 1) {
+        wkDy += ` and ${days} day`
+    } else if (days < 7) {
+        wkDy += ` and ${days} days`
     } else if (days >= 7 && days < 14) {
-        wkDy += `${weeks} week, and ${dAdj} days`
+        wkDy += `, ${weeks} week`
+        if (dAdj === 1) {
+            wkDy += `, and ${dAdj} day`
+        } else if (dAdj > 1) {
+            wkDy += `, and ${dAdj} days`
+        }
     } else if (days > 14) {
-        wkDy += `${weeks} weeks, and ${dAdj} days`
+        wkDy += `, ${weeks} weeks`
+        if (dAdj === 1) {
+            wkDy += `, and ${dAdj} day`
+        } else if (dAdj > 1) {
+            wkDy += `, and ${dAdj} days`
+        }
     }
+
     return wkDy;
 }
 
